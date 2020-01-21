@@ -106,7 +106,8 @@ function LinkControl( {
 	const [ isEditingLink, setIsEditingLink ] = useState(
 		! value || ! value.url
 	);
-	const isEndingEditWithFocus = useRef( false );
+    const [ isResolvingLink, setIsResolvingLink ] = useState( false );
+
 	const { fetchSearchSuggestions } = useSelect( ( select ) => {
 		const { getSettings } = select( 'core/block-editor' );
 		return {
@@ -302,7 +303,7 @@ function LinkControl( {
 						<LinkControlSearchCreate
 							searchTerm={ inputValue }
 							onClick={ async () => {
-								setIsEditingLink( false );
+								setIsResolvingLink( true );
 								onChange( {
 									title: 'Loading link...',
 									url: 'loading...',
@@ -315,6 +316,7 @@ function LinkControl( {
 										} );
 									}, 5000 );
 								} );
+								setIsResolvingLink( false );
 								setIsEditingLink( false );
 								onChange( _result );
 							} }
@@ -328,10 +330,30 @@ function LinkControl( {
 
 	return (
 		<div
+
 			tabIndex={ -1 }
 			ref={ wrapperNode }
 			className="block-editor-link-control"
 		>
+            { isResolvingLink && (
+            <div
+                className={ classnames( 'block-editor-link-control__search-item', {
+                    'is-current': true,
+                } ) }
+            >
+                <span className="block-editor-link-control__search-item-header">
+                    <span
+                        className="block-editor-link-control__search-item-title"
+                    >
+                        { __( 'Creating Page' ) }
+                    </span>
+                    <span className="block-editor-link-control__search-item-info">
+                        { __( 'Your new Page is being created' ) }.
+                    </span>
+                </span>
+            </div>
+
+
 			{ isEditingLink || ! value ? (
 				<LinkControlSearchInput
 					value={ inputValue }
@@ -345,6 +367,8 @@ function LinkControl( {
 					onReset={ resetInput }
 					showInitialSuggestions={ showInitialSuggestions }
 				/>
+			) }
+
 			) : (
 				<Fragment>
 					<p
@@ -391,6 +415,25 @@ function LinkControl( {
 						onChange={ onChange }
 					/>
 				</Fragment>
+			}
+
+			{ isEditingLink && ! isResolvingLink && (
+				<LinkControlSearchInput
+					value={ inputValue }
+					onChange={ onInputChange }
+					onSelect={ ( suggestion ) => {
+						setIsEditingLink( false );
+						onChange( { ...value, ...suggestion } );
+					} }
+					renderSuggestions={ renderSearchResults }
+					fetchSuggestions={ getSearchHandler }
+					onReset={ resetInput }
+					showInitialSuggestions={ showInitialSuggestions }
+				/>
+			) }
+
+			{ ! isEditingLink && ! isResolvingLink && (
+				<LinkControlSettingsDrawer value={ value } settings={ settings } onChange={ onChange } />
 			) }
 		</div>
 	);
