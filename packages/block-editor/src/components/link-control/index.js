@@ -254,6 +254,11 @@ function LinkControl( {
 		[ handleDirectEntry, fetchSearchSuggestions ]
 	);
 
+	const forceUpdateInputValue = ( val ) => {
+		setInputValue( '' );
+		setInputValue( val );
+	};
+
 	// Render Components
 	const renderSearchResults = ( {
 		suggestionsListProps,
@@ -322,6 +327,7 @@ function LinkControl( {
 											setIsEditingLink( false );
 										} else {
 											setIsEditingLink( true );
+											forceUpdateInputValue( inputValue );
 										}
 									} }
 									key={ `${ suggestion.id }-${ suggestion.type }` }
