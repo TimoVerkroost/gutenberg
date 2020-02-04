@@ -417,7 +417,7 @@ function LinkControl( {
 				</div>
 			) }
 
-			{ isEditingLink || ! value ? (
+			{ ( isEditingLink || ! value ) && ! isResolvingLink && (
 				<LinkControlSearchInput
 					value={ inputValue }
 					onChange={ onInputChange }
@@ -442,7 +442,9 @@ function LinkControl( {
 					showInitialSuggestions={ showInitialSuggestions }
 					errorMsg={ errorMsg }
 				/>
-			) : (
+			) }
+
+			{ ! isEditingLink && ! isResolvingLink && (
 				<Fragment>
 					<VisuallyHidden>
 						<p

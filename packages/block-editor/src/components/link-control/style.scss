@@ -181,6 +181,10 @@
 	}
 }
 
+.block-editor-link-control__loading {
+	margin: $grid-size-large; // when only loading control is shown it requires it's own spacing.
+}
+
 .block-editor-link-control__search-create {
 	margin-top: 20px;
 	overflow: visible;
