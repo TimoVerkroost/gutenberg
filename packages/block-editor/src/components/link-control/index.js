@@ -99,7 +99,6 @@ function LinkControl( {
 	settings,
 	onChange = noop,
 	showInitialSuggestions,
-	showCreateEntity,
 	createEntity,
 } ) {
 	const wrapperNode = useRef();
@@ -315,7 +314,6 @@ function LinkControl( {
 				suggestions[ 0 ].type.toLowerCase()
 			);
 		const shouldShowCreateEntity =
-			showCreateEntity &&
 			createEntity &&
 			! isSingleDirectEntryResult &&
 			! isInitialSuggestions;
