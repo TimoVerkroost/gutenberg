@@ -54,7 +54,9 @@ const LinkControlSearchInput = ( {
 					__experimentalRenderSuggestions={ renderSuggestions }
 					__experimentalFetchLinkSuggestions={ fetchSuggestions }
 					__experimentalHandleURLSuggestions={ true }
-					__experimentalShowInitialSuggestions={ showInitialSuggestions }
+					__experimentalShowInitialSuggestions={
+						showInitialSuggestions
+					}
 				/>
 
 				<Button
@@ -68,12 +70,15 @@ const LinkControlSearchInput = ( {
 			</div>
 			<div role="alert" aria-live="assertive">
 				{ errorMsg && (
-					<Notice className="block-editor-link-control__search-error" status="error" isDismissible={ false }>
+					<Notice
+						className="block-editor-link-control__search-error"
+						status="error"
+						isDismissible={ false }
+					>
 						{ errorMsg }
 					</Notice>
 				) }
 			</div>
-
 		</form>
 	);
 };
