@@ -444,7 +444,7 @@ function LinkControl( {
 				/>
 			) }
 
-			{ ! isEditingLink && ! isResolvingLink && (
+			{ value && ! isEditingLink && ! isResolvingLink && (
 				<Fragment>
 					<VisuallyHidden>
 						<p
