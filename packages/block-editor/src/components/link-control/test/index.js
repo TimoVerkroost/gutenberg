@@ -416,8 +416,6 @@ describe( 'Default search suggestions', () => {
 	} );
 
 	it( 'should not display initial suggestions when input value is present', async () => {
-		let searchResultElements;
-		//
 		// Render with an initial value an ensure that no initial suggestions
 		// are shown.
 		//
@@ -450,7 +448,7 @@ describe( 'Default search suggestions', () => {
 
 		await eventLoopTick();
 
-		searchResultElements = container.querySelectorAll(
+		const searchResultElements = container.querySelectorAll(
 			'[role="listbox"] [role="option"]'
 		);
 
@@ -464,11 +462,38 @@ describe( 'Default search suggestions', () => {
 		// it should match any url that's like ?p= and also include a URL option
 		expect( searchResultElements ).toHaveLength( 5 );
 
-		expect( mockFetchSearchSuggestions ).toHaveBeenCalled();
+		expect( mockFetchSearchSuggestions ).toHaveBeenCalledTimes( 1 );
+	} );
 
-		//
-		// Reset the search to empty and check the initial suggestions are now shown.
-		//
+	it( 'should display initial suggestions when input value is reset', async () => {
+		const searchTerm = 'Hello world';
+
+		act( () => {
+			render( <LinkControl showInitialSuggestions />, container );
+		} );
+
+		let searchResultElements;
+		let searchInput;
+
+		// Search Input UI
+		searchInput = container.querySelector( 'input[aria-label="URL"]' );
+
+		// Simulate searching for a term
+		act( () => {
+			Simulate.change( searchInput, { target: { value: searchTerm } } );
+		} );
+
+		// fetchFauxEntitySuggestions resolves on next "tick" of event loop
+		await eventLoopTick();
+
+		expect( searchInput.value ).toBe( searchTerm );
+
+		// TODO: select these by aria relationship to autocomplete rather than arbitary selector.
+		searchResultElements = container.querySelectorAll(
+			'[role="listbox"] [role="option"]'
+		);
+
+		// Grab the reset button now it's available
 		const resetUI = container.querySelector( '[aria-label="Reset"]' );
 
 		act( () => {
@@ -477,16 +502,14 @@ describe( 'Default search suggestions', () => {
 
 		await eventLoopTick();
 
+		// TODO: select these by aria relationship to autocomplete rather than arbitary selector.
 		searchResultElements = container.querySelectorAll(
 			'[role="listbox"] [role="option"]'
 		);
+		searchInput = container.querySelector( 'input[aria-label="URL"]' );
 
+		expect( searchInput.value ).toBe( '' );
 		expect( searchResultElements ).toHaveLength( 3 );
-
-		// Ensure only called once as a guard against potential infinite
-		// re-render loop within `componentDidUpdate` calling `updateSuggestions`
-		// which has calls to `setState` within it.
-		expect( mockFetchSearchSuggestions ).toHaveBeenCalledTimes( 1 );
 	} );
 } );
 
