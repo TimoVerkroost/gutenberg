@@ -158,12 +158,12 @@ function LinkControl( {
 	 * @param {string} val Current value returned by the search.
 	 */
 	const onInputChange = ( val = '' ) => {
-		setErrorMsg( null ); // remove lingering error messages
+		setErrorMessage( null ); // remove lingering error messages
 		setInputValue( val );
 	};
 
 	const resetInput = () => {
-		setErrorMsg( null ); // remove lingering error messages
+		setErrorMessage( null ); // remove lingering error messages
 		setInputValue( '' );
 	};
 
@@ -264,11 +264,11 @@ function LinkControl( {
 		let newEntity;
 
 		setIsResolvingLink( true );
-		setErrorMsg( null );
+		setErrorMessage( null );
 		try {
 			newEntity = await createEntity( 'page', entityTitle );
 		} catch ( error ) {
-			setErrorMsg(
+			setErrorMessage(
 				error.msg ||
 					__(
 						'An unknown error occurred during Page creation. Please try again.'
@@ -439,7 +439,7 @@ function LinkControl( {
 					fetchSuggestions={ getSearchHandler }
 					onReset={ resetInput }
 					showInitialSuggestions={ showInitialSuggestions }
-					errorMsg={ errorMsg }
+					errorMessage={ errorMessage }
 				/>
 			) }
 

@@ -18,7 +18,7 @@ const LinkControlSearchInput = ( {
 	fetchSuggestions,
 	onReset,
 	showInitialSuggestions,
-	errorMsg,
+	errorMessage,
 } ) => {
 	const [ selectedSuggestion, setSelectedSuggestion ] = useState();
 
@@ -69,13 +69,13 @@ const LinkControlSearchInput = ( {
 				/>
 			</div>
 			<div role="alert" aria-live="assertive">
-				{ errorMsg && (
+				{ errorMessage && (
 					<Notice
 						className="block-editor-link-control__search-error"
 						status="error"
 						isDismissible={ false }
 					>
-						{ errorMsg }
+						{ errorMessage }
 					</Notice>
 				) }
 			</div>
