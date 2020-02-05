@@ -862,7 +862,7 @@ describe( 'Creating Entities (eg: Posts, Pages)', () => {
 			expect( errorNotice ).not.toBeFalsy();
 			expect( errorNotice.innerHTML ).toEqual(
 				expect.stringContaining(
-					'An unknown error occurred during Page creation. Please try again.'
+					'An unknown error occurred during creation. Please try again.'
 				)
 			);
 

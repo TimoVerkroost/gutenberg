@@ -286,7 +286,7 @@ function LinkControl( {
 			setErrorMessage(
 				error.msg ||
 					__(
-						'An unknown error occurred during Page creation. Please try again.'
+						'An unknown error occurred during creation. Please try again.'
 					)
 			);
 		}
