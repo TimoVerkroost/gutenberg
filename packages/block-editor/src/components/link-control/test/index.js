@@ -519,7 +519,6 @@ describe( 'Creating Entities (eg: Posts, Pages)', () => {
 				return (
 					<LinkControl
 						value={ link }
-						showCreateEntity={ true }
 						onChange={ ( suggestion ) => {
 							setLink( suggestion );
 						} }
@@ -618,7 +617,6 @@ describe( 'Creating Entities (eg: Posts, Pages)', () => {
 			return (
 				<LinkControl
 					value={ link }
-					showCreateEntity={ true }
 					onChange={ ( suggestion ) => {
 						setLink( suggestion );
 					} }
@@ -732,7 +730,6 @@ describe( 'Creating Entities (eg: Posts, Pages)', () => {
 				render(
 					<LinkControl
 						showInitialSuggestions={ true } // should show even if we're not showing initial suggestions
-						showCreateEntity={ true }
 						createEntity={ jest.fn() }
 					/>,
 					container
@@ -772,10 +769,7 @@ describe( 'Creating Entities (eg: Posts, Pages)', () => {
 			async ( inputText ) => {
 				act( () => {
 					render(
-						<LinkControl
-							showCreateEntity={ true }
-							createEntity={ jest.fn() }
-						/>,
+						<LinkControl createEntity={ jest.fn() } />,
 						container
 					);
 				} );
@@ -823,10 +817,7 @@ describe( 'Creating Entities (eg: Posts, Pages)', () => {
 
 			act( () => {
 				render(
-					<LinkControl
-						showCreateEntity={ true }
-						createEntity={ createEntity }
-					/>,
+					<LinkControl createEntity={ createEntity } />,
 					container
 				);
 			} );
