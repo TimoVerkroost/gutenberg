@@ -102,7 +102,7 @@ function LinkControl( {
 	settings,
 	onChange = noop,
 	showInitialSuggestions,
-	createEntity,
+	createSuggestion,
 } ) {
 	const wrapperNode = useRef();
 	const instanceId = useInstanceId( LinkControl );
@@ -270,13 +270,13 @@ function LinkControl( {
 		[ handleDirectEntry, fetchSearchSuggestions ]
 	);
 
-	const handleOnCreate = async ( entityTitle ) => {
-		let newEntity;
+	const handleOnCreate = async ( suggestionTitle ) => {
+		let newSuggestion;
 
 		setIsResolvingLink( true );
 		setErrorMessage( null );
 		try {
-			newEntity = await createEntity( entityTitle );
+			newSuggestion = await createSuggestion( suggestionTitle );
 		} catch ( error ) {
 			setErrorMessage(
 				error.msg ||
@@ -288,9 +288,9 @@ function LinkControl( {
 
 		setIsResolvingLink( false );
 
-		if ( newEntity ) {
+		if ( newSuggestion ) {
 			// only set if request is resolved
-			onChange( newEntity );
+			onChange( newSuggestion );
 			setIsEditingLink( false );
 		} else {
 			setIsEditingLink( true );
@@ -325,7 +325,7 @@ function LinkControl( {
 				suggestions[ 0 ].type.toLowerCase()
 			);
 		const shouldShowCreateEntity =
-			createEntity &&
+			createSuggestion &&
 			! isSingleDirectEntryResult &&
 			! isInitialSuggestions;
 
