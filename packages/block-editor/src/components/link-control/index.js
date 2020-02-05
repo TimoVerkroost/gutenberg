@@ -297,7 +297,7 @@ function LinkControl( {
 		}
 	};
 
-	const handleSelectSuggestion = ( suggestion, _value = {} ) => () => {
+	const handleSelectSuggestion = ( suggestion, _value = {} ) => {
 		setIsEditingLink( false );
 		onChange( { ..._value, ...suggestion } );
 	};
@@ -438,7 +438,7 @@ function LinkControl( {
 							// Await the promise to ensure `stopEditing` is not called prematurely.
 							await handleOnCreate( inputValue );
 						} else {
-							handleSelectSuggestion( suggestion, value )();
+							handleSelectSuggestion( suggestion, value );
 						}
 
 						// Must be called after handling to ensure focus is
