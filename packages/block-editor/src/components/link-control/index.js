@@ -81,14 +81,14 @@ const CREATE_TYPE = '__CREATE__';
 /**
  * @typedef WPLinkControlProps
  *
- * @property {(WPLinkControlSetting[])=}  settings               An array of settings objects. Each object will used to
- *                                                               render a `ToggleControl` for that setting.
- * @property {(search:string)=>Promise=}  fetchSearchSuggestions Fetches suggestions for a given search term,
- *                                                               returning a promise resolving once fetch is complete.
- * @property {WPLinkControlValue=}        value                  Current link value.
- * @property {WPLinkControlOnChangeProp=} onChange               Value change handler, called with the updated value if
- *                                                               the user selects a new link or updates settings.
- * @property {boolean=}                   showInitialSuggestions Whether to present initial suggestions immediately.
+ * @property {(WPLinkControlSetting[])=}                         settings               An array of settings objects. Each object will used to
+ *                                                                                      render a `ToggleControl` for that setting.
+ * @property {(search:string)=>Promise=}                         fetchSearchSuggestions Fetches suggestions for a given search term,
+ *                                                                                      returning a promise resolving once fetch is complete.
+ * @property {WPLinkControlValue=}                               value                  Current link value.
+ * @property {WPLinkControlOnChangeProp=}                        onChange               Value change handler, called with the updated value if
+ *                                                                                      the user selects a new link or updates settings.
+ * @property {boolean=}                                          showInitialSuggestions Whether to present initial suggestions immediately.
  * @property {(title:string)=>WPLinkControlValue=}               createSuggestion       Handler to manage creation of link value from suggestion.
  */
 
