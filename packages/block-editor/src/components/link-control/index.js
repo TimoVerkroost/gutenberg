@@ -22,6 +22,7 @@ import {
 	useEffect,
 } from '@wordpress/element';
 import {
+	cleanForSlug,
 	safeDecodeURI,
 	filterURLForDisplay,
 	isURL,
@@ -187,6 +188,7 @@ function LinkControl( {
 
 		return Promise.resolve( [
 			{
+				id: cleanForSlug( val ),
 				title: val,
 				url: type === 'URL' ? prependHTTP( val ) : val,
 				type,
@@ -228,6 +230,7 @@ function LinkControl( {
 		return maybeURL( val )
 			? results
 			: results.concat( {
+					id: cleanForSlug( val ),
 					title: val, // // must match the existing `<input>`s text value
 					url: '', // placeholder - not used when creating
 					type: CREATE_TYPE,
