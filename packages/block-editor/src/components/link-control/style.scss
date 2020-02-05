@@ -20,7 +20,7 @@
 		padding-right: 38px; // width of reset button
 		position: relative;
 		z-index: 1;
-		border: 1px solid #e1e1e1;
+		border: 1px solid $light-gray-500;
 		border-radius: $radius-round-rectangle;
 
 		/* Fonts smaller than 16px causes mobile safari to zoom. */
@@ -110,14 +110,14 @@
 
 	&:hover,
 	&:focus {
-		background-color: #e9e9e9;
+		background-color: $light-gray-300;
 	}
 
 	&.is-selected {
-		background: #f2f2f2;
+		background: $light-gray-200;
 
 		.block-editor-link-control__search-item-type {
-			background: #fff;
+			background: $white;
 		}
 	}
 
@@ -155,7 +155,7 @@
 
 		mark {
 			font-weight: 700;
-			color: #000;
+			color: $black;
 			background-color: transparent;
 		}
 
@@ -166,7 +166,7 @@
 
 	.block-editor-link-control__search-item-info {
 		display: block;
-		color: #999;
+		color: $dark-gray-300;
 		font-size: 0.9em;
 		line-height: 1.3;
 	}
@@ -176,7 +176,7 @@
 		padding: 3px 8px;
 		margin-left: auto;
 		font-size: 0.9em;
-		background-color: #f3f4f5;
+		background-color: $light-gray-200;
 		border-radius: 2px;
 	}
 }
@@ -215,7 +215,7 @@
 }
 
 .block-editor-link-control__settings {
-	border-top: 1px solid #e1e1e1;
+	border-top: 1px solid $light-gray-500;
 	margin: 0;
 	padding: $grid-size-large $grid-size-xlarge;
 
