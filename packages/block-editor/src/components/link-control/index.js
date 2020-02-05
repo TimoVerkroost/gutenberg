@@ -266,7 +266,7 @@ function LinkControl( {
 		setIsResolvingLink( true );
 		setErrorMessage( null );
 		try {
-			newEntity = await createEntity( 'page', entityTitle );
+			newEntity = await createEntity( entityTitle );
 		} catch ( error ) {
 			setErrorMessage(
 				error.msg ||
