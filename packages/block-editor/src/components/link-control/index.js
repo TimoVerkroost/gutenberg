@@ -397,7 +397,7 @@ function LinkControl( {
 			? __( 'Recently updated' )
 			: sprintf( __( 'Search results for %s' ), inputValue );
 		const ariaLabel = isInitialSuggestions ? undefined : labelText;
-		const SearchResultsLabel = (
+		const searchResultsLabel = (
 			<span
 				className="block-editor-link-control__search-results-label"
 				id={ searchResultsLabelId }
@@ -409,7 +409,7 @@ function LinkControl( {
 
 		return (
 			<div className="block-editor-link-control__search-results-wrapper">
-				{ isInitialSuggestions && SearchResultsLabel }
+				{ isInitialSuggestions && searchResultsLabel }
 				<div
 					{ ...suggestionsListProps }
 					className={ resultsListClasses }
