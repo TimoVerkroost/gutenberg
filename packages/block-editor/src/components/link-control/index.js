@@ -41,8 +41,6 @@ import LinkControlSearchItem from './search-item';
 import LinkControlSearchInput from './search-input';
 import LinkControlSearchCreate from './search-create-button';
 const CREATE_TYPE = '__CREATE__';
-let cancelableOnCreate;
-let cancelableCreateSuggestion;
 
 /**
  * Creates a wrapper around a promise which allows it to be programmatically
@@ -134,6 +132,9 @@ function LinkControl( {
 	showInitialSuggestions,
 	createSuggestion,
 } ) {
+	let cancelableOnCreate;
+	let cancelableCreateSuggestion;
+
 	const wrapperNode = useRef();
 	const instanceId = useInstanceId( LinkControl );
 	const [ inputValue, setInputValue ] = useState(
